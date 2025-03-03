@@ -8,4 +8,16 @@ multiple3or5(n) = n % 3 == 0 || n % 5 == 0 ? n : 0
 
 N = 1000
 
-sum(map(multiple3or5, rng(N))) 
+sum(map(multiple3or5, rng([10, 49, 1000, 8456, 19546]))) 
+
+#
+# alternative version
+#
+#
+
+function multipleOf3Or5(n)
+    fullrange = (1:n) .- 1
+    sum([x % 3 == 0 || x % 5 == 0 ? x : 0 for x in fullrange])
+end
+
+map(multipleOf3Or5, [10, 49, 1000, 8456, 19546]) == [23, 543, 233168, 16687353, 89144745]

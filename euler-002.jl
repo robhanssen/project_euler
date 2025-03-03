@@ -12,3 +12,20 @@ end
 if sum(fibo) > fibo_max fibo[1] = 0 end
 
 sum(filter(iseven, fibo))
+
+#
+# alternative version
+#
+#
+
+
+function fiboEvenSum(n)
+    fibo = [1, 1]
+    while fibo[1] <= n
+        insert!(fibo, 1, fibo[1] + fibo[2])
+    end
+    fibo[1] = 0
+    sum([i % 2 == 0 ? i : 0 for i in fibo])
+end
+
+@time map(fiboEvenSum, [10, 34, 60, 1000, 100000, 4000000]) == [10, 44, 44, 798, 60696, 4613732]
